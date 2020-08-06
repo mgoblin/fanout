@@ -1,0 +1,8 @@
+{
+  "request": {
+    "urlPath": "/service/accounts"
+  },
+  "response": {
+    "body": "<soapenv:Envelope\n        xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n        xmlns:acc=\"http://mg.ru/accountservice\">\n    <soapenv:Header/>\n    <soapenv:Body>\n        <acc:AccountDetailsResponse>\n            <acc:AccountDetails>\n                <acc:AccountNumber>1</acc:AccountNumber>\n                <acc:AccountName>account</acc:AccountName>\n                <acc:AccountBalance>500</acc:AccountBalance>\n                <acc:AccountStatus>Active</acc:AccountStatus>\n            </acc:AccountDetails>\n        </acc:AccountDetailsResponse>\n    </soapenv:Body>\n</soapenv:Envelope>"
+  }
+}
