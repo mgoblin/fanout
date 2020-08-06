@@ -8,10 +8,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
 
-import java.util.List;
-
 @RestController
-public class AccountController {
+public class AccountStubController {
 
     @Autowired
     private RestAccountService restAccountService;
@@ -37,7 +35,7 @@ public class AccountController {
 
     /**
      * Получение единичного ответа без обращения в вебсервис и сборки пачки
-     * @return
+     * @return ответ с одним аккаунтом
      */
     @GetMapping(path="/stub/single", produces = "application/json")
     public Mono<Account> getAccountStub() {
