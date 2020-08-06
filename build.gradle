@@ -27,6 +27,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     implementation 'org.apache.cxf:cxf-spring-boot-starter-jaxws:3.3.7'
+    implementation 'com.sun.activation:javax.activation:1.2.0'
+
 
     wsdl2java 'com.sun.xml.bind:jaxb-xjc:2.3.0.1'
     wsdl2java 'javax.xml.bind:jaxb-api:2.3.1'

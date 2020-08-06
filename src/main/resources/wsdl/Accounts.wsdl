@@ -6,42 +6,71 @@
                   targetNamespace="http://mg.ru/accountservice"
                   xmlns:accounts="http://mg.ru/accountservice">
     <wsdl:types>
-        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <xsd:import namespace="http://mg.ru/accountservice"
-                        schemaLocation="../schema/AccountService.xsd">
-            </xsd:import>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    xmlns="http://mg.ru/accountservice"
+                    targetNamespace="http://mg.ru/accountservice"
+                    elementFormDefault="qualified">
+
+            <xsd:complexType name="Account">
+                <xsd:sequence>
+                    <xsd:element name="AccountNumber" type="xsd:string"/>
+                    <xsd:element name="AccountName" type="xsd:string"/>
+                    <xsd:element name="AccountBalance" type="xsd:double"/>
+                    <xsd:element name="AccountStatus" type="EnumAccountStatus"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:simpleType name="EnumAccountStatus">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Active"/>
+                    <xsd:enumeration value="Inactive"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:element name="AccountDetailsRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="accountNumber" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="AccountDetailsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="AccountDetails" type="Account"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
         </xsd:schema>
     </wsdl:types>
     <wsdl:message name="AccountDetailsRequest">
-        <wsdl:part element="accounts:AccountDetailsRequest" name="parameters" />
+        <wsdl:part element="accounts:AccountDetailsRequest" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="AccountDetailsResponse">
-        <wsdl:part element="accounts:AccountDetailsResponse" name="parameters" />
+        <wsdl:part element="accounts:AccountDetailsResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:portType name="AccountService">
         <wsdl:operation name="GetAccountDetails">
-            <wsdl:input message="tns:AccountDetailsRequest" />
-            <wsdl:output message="tns:AccountDetailsResponse" />
+            <wsdl:input message="tns:AccountDetailsRequest"/>
+            <wsdl:output message="tns:AccountDetailsResponse"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="AccountServiceSoapBinding" type="tns:AccountService">
         <soap:binding style="document"
-                      transport="http://schemas.xmlsoap.org/soap/http" />
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="GetAccountDetails">
             <soap:operation
-                    soapAction="http://mg.ru/Accounts/GetAccountDetails" />
+                    soapAction="http://mg.ru/Accounts/GetAccountDetails"/>
             <wsdl:input>
-                <soap:body use="literal" />
+                <soap:body use="literal"/>
             </wsdl:input>
             <wsdl:output>
-                <soap:body use="literal" />
+                <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="AccountService">
         <wsdl:port binding="tns:AccountServiceSoapBinding" name="AccountsPort">
             <soap:address
-                    location="http://localhost:8080/apache-cfx-demo/services/accounts" />
+                    location="http://localhost:8080/apache-cfx-demo/services/accounts"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
