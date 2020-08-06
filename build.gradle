@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+
+    id "no.nils.wsdl2java" version "0.12"
+}
+
+group 'ru.mg'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+configurations {
+    all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-reactor-netty'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'org.apache.cxf:cxf-spring-boot-starter-jaxws:3.3.7'
+
+    wsdl2java 'com.sun.xml.bind:jaxb-xjc:2.3.0.1'
+    wsdl2java 'javax.xml.bind:jaxb-api:2.3.1'
+    wsdl2java 'javax.xml.ws:jaxws-api:2.3.1'
+    wsdl2java 'org.apache.cxf:cxf-rt-wsdl:3.2.7'
+    wsdl2java 'javax.jws:javax.jws-api:1.1'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+wsdl2java {
+    cxfVersion = '3.3.1'
+    wsdlsToGenerate = [
+       ["-asyncMethods", "${projectDir}/src/main/resources/wsdl/Accounts.wsdl"]
+    ]
+}
