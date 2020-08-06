@@ -1,0 +1,10 @@
+{
+  "simulation": "ru.mg.gatling.web.AccountsWSStub",
+  "simulationId": "accountswsstub",
+  "start": 1596722175571,
+  "description": "",
+  "scenarios": ["AccountsWSStub"],
+  "assertions": [
+
+  ]
+}
