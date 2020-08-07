@@ -1,6 +1,6 @@
 {
   "request": {
-    "urlPath": "/service/accounts"
+    "urlPath": "/service/accounts/delayed"
   },
   "response": {
     "status": 200,

@@ -23,7 +23,7 @@ public class AccountsWSController {
 
     @GetMapping(path="/single", produces = "application/json")
     public Mono<Account> getAccount() {
-        return wsAccountService.getAccountWS("1")
+        return wsAccountService.getDelayedAccountWS("1")
                 .onErrorResume(e -> Mono.error(
                         new ResponseStatusException(
                                 HttpStatus.SERVICE_UNAVAILABLE,

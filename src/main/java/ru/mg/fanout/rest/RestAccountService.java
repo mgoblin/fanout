@@ -7,7 +7,6 @@ import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
 import ru.mg.fanout.ws.WSAccountService;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 @Service
@@ -34,7 +33,7 @@ public class RestAccountService {
 
     public Mono<AccountsResponse> getAccountsWS(int max) {
         return Flux.fromStream(IntStream.range(1, max + 1).boxed())
-                .flatMap(id -> wsAccountService.getAccountWS(id.toString()))
+                .flatMap(id -> wsAccountService.getDelayedAccountWS(id.toString()))
                 .collectList()
                 .map(responses -> new AccountsResponse(responses.size(), responses));
     }

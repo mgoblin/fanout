@@ -1,6 +1,7 @@
 package ru.mg.fanout.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.*;
@@ -9,7 +10,8 @@ import ru.mg.accountservice.*;
 public class WSAccountService {
 
     @Autowired
-    private AccountService accountService;
+    @Qualifier("delayedAccountWSClient")
+    private AccountService delayedAccountService;
 
     public Mono<Account> getAccountStub(String accountNumber) {
 
@@ -22,11 +24,11 @@ public class WSAccountService {
         return Mono.just(account);
     }
 
-    public Mono<Account> getAccountWS(String accountNumber) {
+    public Mono<Account> getDelayedAccountWS(String accountNumber) {
         AccountDetailsRequest request = new AccountDetailsRequest();
         request.setAccountNumber(accountNumber);
         Mono<AccountDetailsResponse> call = Mono.create(
-                sink -> accountService.getAccountDetailsAsync(request, ReactorAsyncHandler.into(sink)));
+                sink -> delayedAccountService.getAccountDetailsAsync(request, ReactorAsyncHandler.into(sink)));
         return call.map(AccountDetailsResponse::getAccountDetails);
     }
 

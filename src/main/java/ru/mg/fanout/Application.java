@@ -9,17 +9,17 @@ import ru.mg.accountservice.AccountService;
 @SpringBootApplication
 public class Application {
 
-    private static final String SERVICE_URL = "http://localhost:8080/service/accounts";
+    private static final String DELAYED_SERVICE_URL = "http://localhost:8080/service/accounts/delayed";
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean("accountWSClient")
+    @Bean("delayedAccountWSClient")
     public AccountService accountServiceClient() {
         JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
         jaxWsProxyFactoryBean.setServiceClass(AccountService.class);
-        jaxWsProxyFactoryBean.setAddress(SERVICE_URL);
+        jaxWsProxyFactoryBean.setAddress(DELAYED_SERVICE_URL);
         return (AccountService) jaxWsProxyFactoryBean.create();
     }
 }
