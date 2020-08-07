@@ -13,6 +13,10 @@ public class WSAccountService {
     @Qualifier("delayedAccountWSClient")
     private AccountService delayedAccountService;
 
+    @Autowired
+    @Qualifier("fastAccountWSClient")
+    private AccountService fastAccountService;
+
     public Mono<Account> getAccountStub(String accountNumber) {
 
         final Account account = new Account();
@@ -29,6 +33,14 @@ public class WSAccountService {
         request.setAccountNumber(accountNumber);
         Mono<AccountDetailsResponse> call = Mono.create(
                 sink -> delayedAccountService.getAccountDetailsAsync(request, ReactorAsyncHandler.into(sink)));
+        return call.map(AccountDetailsResponse::getAccountDetails);
+    }
+
+    public Mono<Account> getFastAccountWS(String accountNumber) {
+        AccountDetailsRequest request = new AccountDetailsRequest();
+        request.setAccountNumber(accountNumber);
+        Mono<AccountDetailsResponse> call = Mono.create(
+                sink -> fastAccountService.getAccountDetailsAsync(request, ReactorAsyncHandler.into(sink)));
         return call.map(AccountDetailsResponse::getAccountDetails);
     }
 

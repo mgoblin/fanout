@@ -31,9 +31,9 @@ public class RestAccountService {
         return Mono.from(wsAccountService.getAccountStub("1"));
     }
 
-    public Mono<AccountsResponse> getAccountsWS(int max) {
+    public Mono<AccountsResponse> getFastAccountsWS(int max) {
         return Flux.fromStream(IntStream.range(1, max + 1).boxed())
-                .flatMap(id -> wsAccountService.getDelayedAccountWS(id.toString()))
+                .flatMap(id -> wsAccountService.getFastAccountWS(id.toString()))
                 .collectList()
                 .map(responses -> new AccountsResponse(responses.size(), responses));
     }
