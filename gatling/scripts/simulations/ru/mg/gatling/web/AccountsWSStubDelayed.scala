@@ -4,7 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
-class AccountsWSStub extends Simulation {
+class AccountsWSStubDelayed extends Simulation {
   val httpProtocol = http
     .baseUrl("http://localhost:8080")
     .acceptHeader("*/*")
