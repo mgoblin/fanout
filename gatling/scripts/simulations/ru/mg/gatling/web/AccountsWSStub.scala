@@ -12,7 +12,7 @@ class AccountsWSStub extends Simulation {
 
   val scn = scenario("AccountsWSStub")
     .repeat(1) ( exec(http("AccountsWSStubCall")
-      .post("/service/accounts")
+      .post("/service/accounts/delayed")
     ))
 
   setUp(
