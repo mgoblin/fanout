@@ -12,8 +12,8 @@ import ru.mg.accountservice.Account;
 import ru.mg.fanout.ws.WSAccountService;
 
 @RestController
-@RequestMapping("/ws/fast")
-public class AccountsWSFastController {
+@RequestMapping("/ws/delayed")
+public class AccountsWSDelayedController {
 
     @Autowired
     private WSAccountService wsAccountService;
@@ -23,7 +23,7 @@ public class AccountsWSFastController {
 
     @GetMapping(path="/single", produces = "application/json")
     public Mono<Account> getAccount() {
-        return wsAccountService.getFastAccountWS("1")
+        return wsAccountService.getDelayedAccountWS("1")
                 .onErrorResume(e -> Mono.error(
                         new ResponseStatusException(
                                 HttpStatus.SERVICE_UNAVAILABLE,
@@ -32,7 +32,7 @@ public class AccountsWSFastController {
 
     @GetMapping("package/{size}")
     public Mono<AccountsResponse> getAccountsWS(@PathVariable("size") int size) {
-        return restAccountService.getFastAccountsWS(size)
+        return restAccountService.getDelayedAccountsWS(size)
                 .onErrorResume(e -> Mono.error(
                         new ResponseStatusException(
                                 HttpStatus.SERVICE_UNAVAILABLE,

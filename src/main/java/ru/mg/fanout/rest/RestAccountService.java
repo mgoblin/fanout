@@ -37,4 +37,11 @@ public class RestAccountService {
                 .collectList()
                 .map(responses -> new AccountsResponse(responses.size(), responses));
     }
+
+    public Mono<AccountsResponse> getDelayedAccountsWS(int max) {
+        return Flux.fromStream(IntStream.range(1, max + 1).boxed())
+                .flatMap(id -> wsAccountService.getDelayedAccountWS(id.toString()))
+                .collectList()
+                .map(responses -> new AccountsResponse(responses.size(), responses));
+    }
 }
