@@ -1,9 +1,8 @@
 {
   "request": {
-    "urlPath": "/service/accounts/delayed"
+    "urlPath": "/service/accounts/fast"
   },
   "response": {
-    "fixedDelayMilliseconds": 30000,
     "status": 200,
     "headers": {
       "Content-type": "application/soap+xml"
