@@ -4,15 +4,15 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
-class AccountsWSStubDelayed extends Simulation {
+class WSFastStub extends Simulation {
   val httpProtocol = http
     .baseUrl("http://localhost:8080")
     .acceptHeader("*/*")
     .acceptEncodingHeader("gzip, deflate")
 
-  val scn = scenario("AccountsWSStub")
-    .repeat(1) ( exec(http("AccountsWSStubCall")
-      .post("/service/accounts/delayed")
+  val scn = scenario("WSFastStub")
+    .repeat(1) ( exec(http("WSFastStub")
+      .post("/service/accounts/fast")
     ))
 
   setUp(
