@@ -31,4 +31,11 @@ public class RestAccountService {
     public Mono<Account> getAccountStub() {
         return Mono.from(wsAccountService.getAccountStub("1"));
     }
+
+    public Mono<AccountsResponse> getAccountsWS(int max) {
+        return Flux.fromStream(IntStream.range(1, max + 1).boxed())
+                .flatMap(id -> wsAccountService.getAccountWS(id.toString()))
+                .collectList()
+                .map(responses -> new AccountsResponse(responses.size(), responses));
+    }
 }
