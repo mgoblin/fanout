@@ -1,0 +1,10 @@
+{
+  "simulation": "ru.mg.gatling.web.AccountsStubPackage",
+  "simulationId": "accountsstubpackage",
+  "start": 1596787989066,
+  "description": "",
+  "scenarios": ["AccountsStubPackage"],
+  "assertions": [
+
+  ]
+}
