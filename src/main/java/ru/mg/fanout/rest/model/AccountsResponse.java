@@ -1,4 +1,4 @@
-package ru.mg.fanout.rest;
+package ru.mg.fanout.rest.model;
 
 
 import ru.mg.accountservice.Account;

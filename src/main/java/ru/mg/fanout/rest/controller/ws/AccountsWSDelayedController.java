@@ -1,4 +1,4 @@
-package ru.mg.fanout.rest;
+package ru.mg.fanout.rest.controller.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
+import ru.mg.fanout.rest.service.RestAccountService;
+import ru.mg.fanout.rest.model.AccountsResponse;
 import ru.mg.fanout.ws.WSAccountService;
 
 @RestController

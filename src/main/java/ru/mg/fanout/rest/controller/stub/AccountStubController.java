@@ -1,4 +1,4 @@
-package ru.mg.fanout.rest;
+package ru.mg.fanout.rest.controller.stub;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
+import ru.mg.fanout.rest.service.RestAccountService;
+import ru.mg.fanout.rest.model.AccountsResponse;
 
 @RestController
 public class AccountStubController {

@@ -1,4 +1,4 @@
-package ru.mg.fanout.rest;
+package ru.mg.fanout.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,9 +8,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
+import ru.mg.fanout.rest.SOAPMapperService;
+import ru.mg.fanout.rest.model.AccountsResponse;
 import ru.mg.fanout.ws.WSAccountService;
 
-import javax.annotation.PostConstruct;
 import java.util.stream.IntStream;
 
 @Service
