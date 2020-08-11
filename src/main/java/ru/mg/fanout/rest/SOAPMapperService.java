@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import reactor.core.Exceptions;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 import ru.mg.accountservice.Account;
 import ru.mg.accountservice.AccountDetailsRequest;
 import ru.mg.accountservice.AccountDetailsResponse;
@@ -72,5 +75,9 @@ public class SOAPMapperService {
         } catch (Exception e) {
             throw Exceptions.propagate(e);
         }
+    }
+
+    public Mono<Account> createAccountWCMono(String body) {
+        return Mono.fromSupplier(() -> createAccountWCResponse(body));
     }
 }

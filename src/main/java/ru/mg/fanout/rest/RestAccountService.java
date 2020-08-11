@@ -7,8 +7,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
+import ru.mg.accountservice.AccountDetailsResponse;
+import ru.mg.accountservice.EnumAccountStatus;
 import ru.mg.fanout.ws.WSAccountService;
 
+import javax.annotation.PostConstruct;
 import java.util.stream.IntStream;
 
 @Service
@@ -22,6 +25,13 @@ public class RestAccountService {
 
     @Autowired
     private SOAPMapperService mapper;
+
+    private String request;
+
+    @PostConstruct
+    public void postConstruct() {
+        request = mapper.createAccountWSRequest("1");
+    }
 
     public Mono<AccountsResponse> getAccountsStub(int max) {
         return Flux.fromStream(IntStream.range(1, max + 1).boxed())
@@ -40,12 +50,13 @@ public class RestAccountService {
     }
 
     public Mono<Account> getFastAccountWC() {
+        final String accountWSRequest = mapper.createAccountWSRequest("1");
         return webClient
                 .post()
-                .body(BodyInserters.fromValue(mapper.createAccountWSRequest("1")))
+                .body(BodyInserters.fromValue(accountWSRequest))
                 .retrieve()
                 .bodyToMono(String.class)
-                .map(s -> mapper.createAccountWCResponse(s));
+                .flatMap(s -> mapper.createAccountWCMono(s));
     }
 
     public Mono<AccountsResponse> getFastAccountsWS(int max) {
