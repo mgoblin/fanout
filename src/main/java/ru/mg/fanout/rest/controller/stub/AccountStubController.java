@@ -9,12 +9,13 @@ import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
 import ru.mg.fanout.rest.service.RestAccountService;
 import ru.mg.fanout.rest.model.AccountsResponse;
+import ru.mg.fanout.rest.service.stub.StubRestService;
 
 @RestController
 public class AccountStubController {
 
     @Autowired
-    private RestAccountService restAccountService;
+    private StubRestService restAccountService;
 
     /**
      * Получение пачки без обращения в вебсервис в виде POJO

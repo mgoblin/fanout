@@ -31,22 +31,6 @@ public class RestAccountService {
     @Autowired
     private SOAPMapperService mapper;
 
-    public Mono<AccountsResponse> getAccountsStub(int max) {
-        return Flux.fromStream(IntStream.range(1, max + 1).boxed())
-                .flatMap(id -> wsAccountService.getAccountStub(id.toString()))
-                .collectList()
-                .map(responses -> new AccountsResponse(responses.size(), responses));
-    }
-
-    public Flux<Account> getAccountsStubFlux(int max) {
-        return Flux.fromStream(IntStream.range(1, max).boxed())
-                .flatMap(id -> wsAccountService.getAccountStub(id.toString()));
-    }
-
-    public Mono<Account> getAccountStub() {
-        return Mono.from(wsAccountService.getAccountStub("1"));
-    }
-
     public Mono<Account> getFastAccountWC() {
         final String accountWSRequest = mapper.createAccountWSRequest("1");
         return fastWebClient
