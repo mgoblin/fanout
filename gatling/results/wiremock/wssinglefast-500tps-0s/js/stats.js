@@ -11,59 +11,59 @@ stats: {
         "ko": "0"
     },
     "minResponseTime": {
-        "total": "0",
-        "ok": "0",
+        "total": "2",
+        "ok": "2",
         "ko": "-"
     },
     "maxResponseTime": {
-        "total": "7427",
-        "ok": "7427",
+        "total": "1802",
+        "ok": "1802",
         "ko": "-"
     },
     "meanResponseTime": {
-        "total": "394",
-        "ok": "394",
+        "total": "34",
+        "ok": "34",
         "ko": "-"
     },
     "standardDeviation": {
-        "total": "1166",
-        "ok": "1166",
+        "total": "141",
+        "ok": "141",
         "ko": "-"
     },
     "percentiles1": {
-        "total": "5",
-        "ok": "5",
+        "total": "7",
+        "ok": "7",
         "ko": "-"
     },
     "percentiles2": {
-        "total": "9",
-        "ok": "9",
+        "total": "12",
+        "ok": "12",
         "ko": "-"
     },
     "percentiles3": {
-        "total": "3796",
-        "ok": "3796",
+        "total": "31",
+        "ok": "31",
         "ko": "-"
     },
     "percentiles4": {
-        "total": "4952",
-        "ok": "4952",
+        "total": "777",
+        "ok": "777",
         "ko": "-"
     },
     "group1": {
     "name": "t < 800 ms",
-    "count": 53268,
-    "percentage": 89
+    "count": 59454,
+    "percentage": 99
 },
     "group2": {
     "name": "800 ms < t < 1200 ms",
-    "count": 439,
+    "count": 380,
     "percentage": 1
 },
     "group3": {
     "name": "t > 1200 ms",
-    "count": 6293,
-    "percentage": 10
+    "count": 166,
+    "percentage": 0
 },
     "group4": {
     "name": "failed",
@@ -71,78 +71,78 @@ stats: {
     "percentage": 0
 },
     "meanNumberOfRequestsPerSecond": {
-        "total": "495.868",
-        "ok": "495.868",
+        "total": "500",
+        "ok": "500",
         "ko": "-"
     }
 },
 contents: {
-"req_wsfaststub-9d162": {
+"req_accountswssingl-bf335": {
         type: "REQUEST",
-        name: "WSFastStub",
-path: "WSFastStub",
-pathFormatted: "req_wsfaststub-9d162",
+        name: "AccountsWSSingleFast",
+path: "AccountsWSSingleFast",
+pathFormatted: "req_accountswssingl-bf335",
 stats: {
-    "name": "WSFastStub",
+    "name": "AccountsWSSingleFast",
     "numberOfRequests": {
         "total": "60000",
         "ok": "60000",
         "ko": "0"
     },
     "minResponseTime": {
-        "total": "0",
-        "ok": "0",
+        "total": "2",
+        "ok": "2",
         "ko": "-"
     },
     "maxResponseTime": {
-        "total": "7427",
-        "ok": "7427",
+        "total": "1802",
+        "ok": "1802",
         "ko": "-"
     },
     "meanResponseTime": {
-        "total": "394",
-        "ok": "394",
+        "total": "34",
+        "ok": "34",
         "ko": "-"
     },
     "standardDeviation": {
-        "total": "1166",
-        "ok": "1166",
+        "total": "141",
+        "ok": "141",
         "ko": "-"
     },
     "percentiles1": {
-        "total": "5",
-        "ok": "5",
+        "total": "7",
+        "ok": "7",
         "ko": "-"
     },
     "percentiles2": {
-        "total": "9",
-        "ok": "9",
+        "total": "12",
+        "ok": "12",
         "ko": "-"
     },
     "percentiles3": {
-        "total": "3796",
-        "ok": "3796",
+        "total": "31",
+        "ok": "31",
         "ko": "-"
     },
     "percentiles4": {
-        "total": "4952",
-        "ok": "4952",
+        "total": "777",
+        "ok": "777",
         "ko": "-"
     },
     "group1": {
     "name": "t < 800 ms",
-    "count": 53268,
-    "percentage": 89
+    "count": 59454,
+    "percentage": 99
 },
     "group2": {
     "name": "800 ms < t < 1200 ms",
-    "count": 439,
+    "count": 380,
     "percentage": 1
 },
     "group3": {
     "name": "t > 1200 ms",
-    "count": 6293,
-    "percentage": 10
+    "count": 166,
+    "percentage": 0
 },
     "group4": {
     "name": "failed",
@@ -150,8 +150,8 @@ stats: {
     "percentage": 0
 },
     "meanNumberOfRequestsPerSecond": {
-        "total": "495.868",
-        "ok": "495.868",
+        "total": "500",
+        "ok": "500",
         "ko": "-"
     }
 }
