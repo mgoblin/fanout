@@ -30,13 +30,6 @@ public class RestAccountService {
     @Autowired
     private SOAPMapperService mapper;
 
-    private String request;
-
-    @PostConstruct
-    public void postConstruct() {
-        request = mapper.createAccountWSRequest("1");
-    }
-
     public Mono<AccountsResponse> getAccountsStub(int max) {
         return Flux.fromStream(IntStream.range(1, max + 1).boxed())
                 .flatMap(id -> wsAccountService.getAccountStub(id.toString()))
