@@ -1,14 +1,13 @@
 package ru.mg.fanout.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
-import ru.mg.accountservice.AccountDetailsResponse;
-import ru.mg.accountservice.EnumAccountStatus;
 import ru.mg.fanout.ws.WSAccountService;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +20,12 @@ public class RestAccountService {
     private WSAccountService wsAccountService;
 
     @Autowired
-    private WebClient webClient;
+    @Qualifier("fastWebClient")
+    private WebClient fastWebClient;
+
+    @Autowired
+    @Qualifier("delayedWebClient")
+    private WebClient delayedWebClient;
 
     @Autowired
     private SOAPMapperService mapper;
@@ -51,9 +55,19 @@ public class RestAccountService {
 
     public Mono<Account> getFastAccountWC() {
         final String accountWSRequest = mapper.createAccountWSRequest("1");
-        return webClient
+        return fastWebClient
                 .post()
                 .body(BodyInserters.fromValue(accountWSRequest))
+                .retrieve()
+                .bodyToMono(String.class)
+                .flatMap(s -> mapper.createAccountWCMono(s));
+    }
+
+    public Mono<Account> getDelayedAccountWC() {
+        final Mono<String> accountWSRequest = Mono.fromSupplier(() -> mapper.createAccountWSRequest("1"));
+        return delayedWebClient
+                .post()
+                .body(BodyInserters.fromValue("test"))
                 .retrieve()
                 .bodyToMono(String.class)
                 .flatMap(s -> mapper.createAccountWCMono(s));
