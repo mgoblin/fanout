@@ -1,0 +1,10 @@
+{
+  "simulation": "ru.mg.gatling.web.AccountsWCSingleFast",
+  "simulationId": "accountswcsinglefast",
+  "start": 1597143535282,
+  "description": "",
+  "scenarios": ["AccountsWCSingleFast"],
+  "assertions": [
+
+  ]
+}

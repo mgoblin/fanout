@@ -16,6 +16,6 @@ class AccountsWCSingleFast extends Simulation {
     ))
 
   setUp(
-    scn.inject(constantUsersPerSec(500) during (2 minutes))
+    scn.inject(constantUsersPerSec(400) during (2 minutes))
   ).protocols(httpProtocol)
 }
