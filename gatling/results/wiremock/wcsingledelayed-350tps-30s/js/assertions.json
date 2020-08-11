@@ -1,0 +1,10 @@
+{
+  "simulation": "ru.mg.gatling.web.AccountsWCSingleDelayed",
+  "simulationId": "accountswcsingledelayed",
+  "start": 1597154882569,
+  "description": "",
+  "scenarios": ["AccountsWCSingleDelayed"],
+  "assertions": [
+
+  ]
+}
