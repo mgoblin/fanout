@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
 import ru.mg.fanout.rest.service.RestAccountService;
+import ru.mg.fanout.rest.service.wc.WCRestService;
 
 @RestController
 @RequestMapping("/wc/delayed")
 public class AccountWCDelayedController {
 
     @Autowired
-    private RestAccountService restAccountService;
+    private WCRestService restAccountService;
 
     @GetMapping(path="/single", produces = "application/json")
     public Mono<Account> getAccount() {
