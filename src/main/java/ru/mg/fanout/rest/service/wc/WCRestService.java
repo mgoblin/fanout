@@ -33,10 +33,12 @@ public class WCRestService {
     }
 
     public Mono<Account> getDelayedAccountWC() {
-        final Mono<String> accountWSRequest = Mono.fromSupplier(() -> mapper.createAccountWSRequest("1"));
+        final Mono<String> accountWSRequest = Mono
+                .fromSupplier(() -> mapper.createAccountWSRequest("1"));
+
         return delayedWebClient
                 .post()
-                .body(BodyInserters.fromValue("test"))
+                .body(BodyInserters.fromPublisher(accountWSRequest, String.class))
                 .retrieve()
                 .bodyToMono(String.class)
                 .flatMap(s -> mapper.createAccountWCMono(s));
