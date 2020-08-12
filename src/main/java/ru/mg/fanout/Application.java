@@ -70,9 +70,11 @@ public class Application {
         String connectionProviderName = "webFluxConnectionProvider";
         int maxConnections = 20_000;
         HttpClient httpClient = HttpClient.create(
-                ConnectionProvider
-                .create(connectionProviderName, maxConnections))
-                .keepAlive(true);
+                ConnectionProvider.builder("httpConnectionBuilder")
+                        .maxConnections(maxConnections)
+                        .fifo()
+                        .metrics(true)
+                        .build());
         return WebClient.builder()
                 .clientConnector(new ReactorClientHttpConnector(httpClient));
     }
