@@ -70,7 +70,7 @@ public class Application {
         String connectionProviderName = "webFluxConnectionProvider";
         int maxConnections = 20_000;
         HttpClient httpClient = HttpClient.create(
-                ConnectionProvider.builder("httpConnectionBuilder")
+                ConnectionProvider.builder(connectionProviderName)
                         .maxConnections(maxConnections)
                         .fifo()
                         .metrics(true)
