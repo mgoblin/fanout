@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
+import ru.mg.fanout.rest.controller.AccountRestController;
 import ru.mg.fanout.rest.service.ws.WSPackageService;
 import ru.mg.fanout.rest.model.AccountsResponse;
 import ru.mg.fanout.ws.WSAccountService;
 
 @RestController
 @RequestMapping("/ws/fast")
-public class AccountsWSFastController {
+public class AccountsWSFastController implements AccountRestController {
 
     @Autowired
     private WSAccountService wsAccountService;
@@ -33,7 +34,7 @@ public class AccountsWSFastController {
     }
 
     @GetMapping("package/{size}")
-    public Mono<AccountsResponse> getAccountsWS(@PathVariable("size") int size) {
+    public Mono<AccountsResponse> getAccounts(@PathVariable("size") int size) {
         return WSPackageService.getFastAccountsWS(size)
                 .onErrorResume(e -> Mono.error(
                         new ResponseStatusException(

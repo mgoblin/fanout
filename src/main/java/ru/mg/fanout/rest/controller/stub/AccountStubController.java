@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
+import ru.mg.fanout.rest.controller.AccountRestController;
 import ru.mg.fanout.rest.model.AccountsResponse;
 import ru.mg.fanout.rest.service.stub.StubRestService;
 
+/**
+ * Контроллер "заглушенной" реализации
+ */
 @RestController
 @RequestMapping("/stub")
-public class AccountStubController {
+public class AccountStubController implements AccountRestController  {
 
     @Autowired
     private StubRestService restAccountService;
@@ -24,7 +28,7 @@ public class AccountStubController {
      * @return ответ с пачкой и ее размером
      */
     @GetMapping(path="/package/{size}", produces = "application/json")
-    public Mono<AccountsResponse> getAccountsStub(@PathVariable("size") int size) {
+    public Mono<AccountsResponse> getAccounts(@PathVariable("size") int size) {
         return restAccountService.getAccountsStub(size);
     }
 
@@ -42,7 +46,7 @@ public class AccountStubController {
      * @return ответ с одним аккаунтом
      */
     @GetMapping(path="/single", produces = "application/json")
-    public Mono<Account> getAccountStub() {
+    public Mono<Account> getAccount() {
         return restAccountService.getAccountStub();
     }
 }
