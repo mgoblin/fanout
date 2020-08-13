@@ -10,7 +10,7 @@ import ru.mg.fanout.ws.WSAccountService;
 import java.util.stream.IntStream;
 
 @Service
-public class WSSOAPService {
+public class WSPackageService {
 
     @Autowired
     private WSAccountService wsAccountService;
