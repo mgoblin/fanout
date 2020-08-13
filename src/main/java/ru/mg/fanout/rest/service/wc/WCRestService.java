@@ -7,7 +7,6 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
-import ru.mg.fanout.rest.SOAPMapperService;
 
 @Service
 public class WCRestService {

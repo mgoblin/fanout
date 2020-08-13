@@ -1,4 +1,4 @@
-package ru.mg.fanout.rest;
+package ru.mg.fanout.rest.service.wc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
