@@ -1,4 +1,4 @@
-package ru.mg.fanout.rest.service;
+package ru.mg.fanout.rest.service.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import ru.mg.fanout.ws.WSAccountService;
 import java.util.stream.IntStream;
 
 @Service
-public class RestAccountService {
+public class WSSOAPService {
 
     @Autowired
     private WSAccountService wsAccountService;

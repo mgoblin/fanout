@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
-import ru.mg.fanout.rest.service.RestAccountService;
 import ru.mg.fanout.rest.model.AccountsResponse;
 import ru.mg.fanout.rest.service.stub.StubRestService;
 
