@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
-import ru.mg.fanout.rest.model.OperationError;
+import ru.mg.fanout.rest.model.OperationErrorResponse;
 
 import static ru.mg.fanout.rest.controller.utils.JsonMapper.mapToString;
 
@@ -13,7 +13,7 @@ public class ErrorHandler {
         return Mono.just(ResponseEntity
                 .status(HttpStatus.SERVICE_UNAVAILABLE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(mapToString(new OperationError(
+                .body(mapToString(new OperationErrorResponse(
                         errorMessage,
                         "Flux timeout"))));
     }
@@ -21,7 +21,7 @@ public class ErrorHandler {
     public static Mono<ResponseEntity<String>> errorResponse(String errorMessage, String errorCause) {
         return Mono.just(ResponseEntity
                 .status(HttpStatus.SERVICE_UNAVAILABLE)
-                .body(mapToString(new OperationError(
+                .body(mapToString(new OperationErrorResponse(
                         errorMessage,
                         errorCause))));
     }
