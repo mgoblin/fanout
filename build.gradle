@@ -1,3 +1,17 @@
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+
+buildscript {
+    ext {
+        yamlMappingsPath = "$projectDir/wiremock/yaml/"
+        wiremockMappingsPath = "$projectDir/wiremock/mappings/"
+    }
+    dependencies {
+        classpath "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2"
+        classpath "com.fasterxml.jackson.core:jackson-databind:2.11.2"
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.3.2.RELEASE'
@@ -52,4 +66,22 @@ wsdl2java {
     wsdlsToGenerate = [
        ["-asyncMethods", "${projectDir}/src/main/resources/wsdl/Accounts.wsdl"]
     ]
+}
+
+task convertWiremockMappings {
+    doLast {
+        ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory())
+        ObjectMapper jsonWriter = new ObjectMapper();
+
+        fileTree(yamlMappingsPath).visit {
+            Object obj = yamlReader.readValue(it.file, Object.class)
+            def json = jsonWriter.
+                    writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(obj)
+
+            def outputFileName = it.file.name[0..<it.file.name.lastIndexOf('.')]
+
+            file(wiremockMappingsPath + outputFileName + '.json').write json
+        }
+    }
 }

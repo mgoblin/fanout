@@ -5,4 +5,5 @@ java -jar wiremock-standalone-2.26.3.jar \
  --no-request-journal \
  --container-threads 20 \
  --jetty-acceptor-threads 5 \
- --jetty-accept-queue-size 100000
+ --jetty-accept-queue-size 100000 \
+ --global-response-templating
