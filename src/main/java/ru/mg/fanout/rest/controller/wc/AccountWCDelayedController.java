@@ -43,6 +43,15 @@ public class AccountWCDelayedController implements AccountRestController<String,
     }
 
     public Mono<ResponseEntity<String>> getAccounts(int size) {
-        return Mono.empty();
+        return wcPackageService.getDelayedAccountsWS(size)
+                .map(acc -> ResponseEntity
+                        .ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapToString(acc)))
+                .onErrorResume(
+                        ExecutionException.class,
+                        ex -> errorResponse("SOAP Service error", ex.getCause().getMessage()))
+                .timeout(Duration.ofMillis(1000), timeoutResponse("SOAP Service timeout"));
+
     }
 }

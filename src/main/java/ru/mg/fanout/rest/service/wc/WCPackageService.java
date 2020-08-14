@@ -19,4 +19,11 @@ public class WCPackageService {
                 .collectList()
                 .map(responses -> new AccountsResponse(responses.size(), responses));
     }
+
+    public Mono<AccountsResponse> getDelayedAccountsWS(int max) {
+        return Flux.fromStream(IntStream.range(1, max + 1).boxed())
+                .flatMap(id -> wcSingleService.getDelayedAccountWC(id.toString()))
+                .collectList()
+                .map(responses -> new AccountsResponse(responses.size(), responses));
+    }
 }

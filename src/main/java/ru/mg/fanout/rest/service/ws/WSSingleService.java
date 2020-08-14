@@ -1,11 +1,10 @@
-package ru.mg.fanout.rest.service.wc;
+package ru.mg.fanout.rest.service.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.*;
-import ru.mg.fanout.rest.service.ws.ReactorAsyncHandler;
 
 @Service
 public class WSSingleService {

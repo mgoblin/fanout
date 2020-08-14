@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import ru.mg.fanout.rest.controller.AccountRestController;
 import ru.mg.fanout.rest.service.ws.WSPackageService;
-import ru.mg.fanout.rest.service.wc.WSSingleService;
+import ru.mg.fanout.rest.service.ws.WSSingleService;
 
 import java.time.Duration;
 import java.util.concurrent.ExecutionException;

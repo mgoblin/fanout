@@ -6,7 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.Account;
 import ru.mg.fanout.rest.model.AccountsResponse;
-import ru.mg.fanout.rest.service.wc.WSSingleService;
+import ru.mg.fanout.rest.service.ws.WSSingleService;
 
 import java.util.stream.IntStream;
 
