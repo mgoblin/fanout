@@ -21,8 +21,8 @@ public class WCRestService {
     @Autowired
     private SOAPMapperService mapper;
 
-    public Mono<Account> getFastAccountWC() {
-        final String accountWSRequest = mapper.createAccountWSRequest("1");
+    public Mono<Account> getFastAccountWC(String accountNumber) {
+        final String accountWSRequest = mapper.createAccountWSRequest(accountNumber);
         return fastWebClient
                 .post()
                 .body(BodyInserters.fromValue(accountWSRequest))
@@ -31,9 +31,9 @@ public class WCRestService {
                 .flatMap(s -> mapper.createAccountWCMono(s));
     }
 
-    public Mono<Account> getDelayedAccountWC() {
+    public Mono<Account> getDelayedAccountWC(String accountNumber) {
         final Mono<String> accountWSRequest = Mono
-                .fromSupplier(() -> mapper.createAccountWSRequest("1"));
+                .fromSupplier(() -> mapper.createAccountWSRequest(accountNumber));
 
         return delayedWebClient
                 .post()
