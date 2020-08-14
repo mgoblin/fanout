@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 import ru.mg.accountservice.Account;
 
 @Service
-public class WCRestService {
+public class WCSingleService {
     @Autowired
     @Qualifier("fastWebClient")
     private WebClient fastWebClient;
@@ -33,7 +34,8 @@ public class WCRestService {
 
     public Mono<Account> getDelayedAccountWC(String accountNumber) {
         final Mono<String> accountWSRequest = Mono
-                .fromSupplier(() -> mapper.createAccountWSRequest(accountNumber));
+                .defer(() -> Mono.just(mapper.createAccountWSRequest(accountNumber)))
+                .subscribeOn(Schedulers.boundedElastic());
 
         return delayedWebClient
                 .post()

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import ru.mg.fanout.rest.controller.AccountRestController;
 import ru.mg.fanout.rest.service.wc.WCPackageService;
-import ru.mg.fanout.rest.service.wc.WCRestService;
+import ru.mg.fanout.rest.service.wc.WCSingleService;
 
 import java.time.Duration;
 import java.util.concurrent.ExecutionException;
@@ -26,7 +26,7 @@ import static ru.mg.fanout.rest.controller.utils.JsonMapper.mapToString;
 public class AccountWCFastController implements AccountRestController<String, String> {
 
     @Autowired
-    private WCRestService restAccountService;
+    private WCSingleService restAccountService;
 
     @Autowired
     private WCPackageService wcPackageService;

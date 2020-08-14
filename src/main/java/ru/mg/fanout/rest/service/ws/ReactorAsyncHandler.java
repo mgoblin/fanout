@@ -1,4 +1,4 @@
-package ru.mg.fanout.ws;
+package ru.mg.fanout.rest.service.ws;
 
 import reactor.core.publisher.MonoSink;
 

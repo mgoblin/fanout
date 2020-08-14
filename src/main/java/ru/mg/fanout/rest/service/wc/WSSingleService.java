@@ -1,13 +1,14 @@
-package ru.mg.fanout.ws;
+package ru.mg.fanout.rest.service.wc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import ru.mg.accountservice.*;
+import ru.mg.fanout.rest.service.ws.ReactorAsyncHandler;
 
 @Service
-public class WSAccountService {
+public class WSSingleService {
 
     @Autowired
     @Qualifier("delayedAccountWSClient")
