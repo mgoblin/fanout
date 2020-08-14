@@ -1,6 +1,7 @@
 package ru.mg.fanout.rest.controller.stub;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,11 @@ import ru.mg.fanout.rest.model.AccountsResponse;
 import ru.mg.fanout.rest.service.stub.StubRestService;
 
 /**
- * Контроллер "заглушенной" реализации
+ * Контроллер "заглушенной" реализации. Не обращается наружу, а сразу отдает ответ
  */
 @RestController
 @RequestMapping("/stub")
-public class AccountStubController implements AccountRestController  {
+public class AccountStubController implements AccountRestController<Account, AccountsResponse>  {
 
     @Autowired
     private StubRestService restAccountService;
@@ -28,8 +29,8 @@ public class AccountStubController implements AccountRestController  {
      * @return ответ с пачкой и ее размером
      */
     @GetMapping(path="/package/{size}", produces = "application/json")
-    public Mono<AccountsResponse> getAccounts(@PathVariable("size") int size) {
-        return restAccountService.getAccountsStub(size);
+    public Mono<ResponseEntity<AccountsResponse>> getAccounts(@PathVariable("size") int size) {
+        return restAccountService.getAccountsStub(size).map(ResponseEntity::ok);
     }
 
     /**
@@ -46,7 +47,7 @@ public class AccountStubController implements AccountRestController  {
      * @return ответ с одним аккаунтом
      */
     @GetMapping(path="/single", produces = "application/json")
-    public Mono<Account> getAccount() {
-        return restAccountService.getAccountStub();
+    public Mono<ResponseEntity<Account>> getAccount() {
+        return restAccountService.getAccountStub().map(ResponseEntity::ok);
     }
 }
