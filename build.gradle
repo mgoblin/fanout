@@ -85,3 +85,5 @@ task convertWiremockMappings {
         }
     }
 }
+
+build.finalizedBy('convertWiremockMappings')
