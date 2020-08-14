@@ -1,0 +1,25 @@
+"request":
+  "urlPath": "/service/accounts/delayed"
+  "bodyPatterns":
+    -  "matches": ".*<acc:accountNumber>([0-9]+)</acc:accountNumber>.*"
+"response":
+  "status": 200
+  "headers":
+    "Content-type": "application/soap+xml"
+  "fixedDelayMilliseconds": 30000
+  "body": |
+    <soapenv:Envelope
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+            xmlns:acc=\"http://mg.ru/accountservice\">
+        <soapenv:Header/>
+        <soapenv:Body>
+          <acc:AccountDetailsResponse>
+            <acc:AccountDetails>
+              <acc:AccountNumber>{{xPath request.body '/Envelope/Body/AccountDetailsRequest/accountNumber/text()'}}</acc:AccountNumber>
+              <acc:AccountName>account</acc:AccountName>
+              <acc:AccountBalance>500</acc:AccountBalance>
+              <acc:AccountStatus>Active</acc:AccountStatus>
+            </acc:AccountDetails>
+          </acc:AccountDetailsResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
